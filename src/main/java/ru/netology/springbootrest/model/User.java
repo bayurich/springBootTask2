@@ -1,25 +1,41 @@
 package ru.netology.springbootrest.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
 public class User {
-    private String name;
+    @Size(min = 5, max = 10)
+    @NotBlank
+    private String user;
+    @Size(min = 8, max = 20)
+    @NotBlank
     private String password;
     private Set<Authorities> authorities = new HashSet<>();
 
-    public User(String name, String password, Set<Authorities> authorities) {
-        this.name = name;
+    public User() {
+    }
+
+    public User(String user, String password) {
+        this.user = user;
+        this.password = password;
+    }
+
+    public User(String user, String password, Set<Authorities> authorities) {
+        this.user = user;
         this.password = password;
         this.authorities = authorities;
     }
 
-    public String getName() {
-        return name;
+    public String getUser() {
+        return user;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getPassword() {
@@ -41,7 +57,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
+                "user='" + user + '\'' +
                 ", password='" + password + '\'' +
                 ", authorities=" + authorities +
                 '}';
