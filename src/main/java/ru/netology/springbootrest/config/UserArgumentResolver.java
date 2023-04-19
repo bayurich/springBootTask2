@@ -11,6 +11,7 @@ import ru.netology.springbootrest.model.User;
 public class UserArgumentResolver implements HandlerMethodArgumentResolver {
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
+        //TODO ??? не находит аннотацию UserResolve у параметра user, нужно разбираться
         return parameter.hasParameterAnnotation(UserResolve.class) /*&&
                 parameter.getParameterType().equals(User.class)*/;
     }
