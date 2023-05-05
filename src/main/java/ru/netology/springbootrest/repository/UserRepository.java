@@ -12,6 +12,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Repository
 public class UserRepository {
@@ -21,8 +22,8 @@ public class UserRepository {
 
     public UserRepository() {
         //terporary for test
-        users.put("user1", new User("user1", "pass1", Set.of(Authorities.WRITE)));
-        users.put("user2", new User("user2", "pass2", Set.of(Authorities.READ, Authorities.DELETE)));
+        users.put("user1", new User("user1", "pass1", Stream.of(Authorities.WRITE).collect(Collectors.toCollection(HashSet::new))));
+        users.put("user2", new User("user2", "pass2", Stream.of(Authorities.READ, Authorities.DELETE).collect(Collectors.toCollection(HashSet::new))));
     }
 
     public List<Authorities> getUserAuthorities(String user, String password) {
